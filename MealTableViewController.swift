@@ -10,7 +10,7 @@ import UIKit
 
 class MealTableViewController: UITableViewController {
     
-    // Mark: Properties
+    // MARK: Properties
     
     var meals = [Meal]()
     
@@ -107,7 +107,7 @@ class MealTableViewController: UITableViewController {
     }
     */
     
-    // Mark: Private Methods
+    // MARK: Private Methods
     
     private func loadSampleMeals() {
         
