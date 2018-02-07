@@ -115,7 +115,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="nameTextField" destination="twT-90-kM6" id="86w-Bi-NZu"/>
+                        <outlet property="nameTextField" destination="twT-90-kM6" id="mn2-Er-4CS"/>
                         <outlet property="photoImageView" destination="yka-Be-Vw8" id="7FZ-JY-cAp"/>
                         <outlet property="ratingControl" destination="uCe-Ni-8jP" id="CeU-pN-kTK"/>
                     </connections>

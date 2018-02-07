@@ -43,6 +43,7 @@ import UIKit
         super.init(coder: coder)
         setupButtons()
     }
+    
     // Mark: Button Action
     @objc func ratingButtonTapped(button: UIButton) {
         

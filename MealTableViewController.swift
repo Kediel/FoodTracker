@@ -33,7 +33,8 @@ class MealTableViewController: UITableViewController {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection
+        section: Int) -> Int {
         
         return meals.count
     }
@@ -44,7 +45,8 @@ class MealTableViewController: UITableViewController {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "MealTableViewCell"
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MealTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
+    for: indexPath) as? MealTableViewCell else {
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         
@@ -115,18 +117,18 @@ class MealTableViewController: UITableViewController {
         let photo2 = UIImage(named: "burger")
         let photo3 = UIImage(named: "dish")
         
-        guard let meal1 = Meal(name: "Beer and snacks", photo: photo1, rating: 4) else {
-            fatalError("Unable to instantiate meal1")
+        guard let beer = Meal(name: "Beer and snacks", photo: photo1, rating: 4) else {
+            fatalError("Unable to instantiate meal1 (beer)")
         }
         
-        guard let meal2 = Meal(name: "Spicy Avacado Burger", photo: photo2, rating: 5) else {
-            fatalError("Unable to instantiate meal2")
+        guard let burger = Meal(name: "Spicy Avacado Burger", photo: photo2, rating: 5) else {
+            fatalError("Unable to instantiate meal2(burger)")
         }
         
-        guard let meal3 = Meal(name: "Pasta dish", photo: photo3, rating: 3) else {
-            fatalError("Unable to instantiate meal3")
+        guard let dish = Meal(name: "Pasta dish", photo: photo3, rating: 3) else {
+            fatalError("Unable to instantiate meal3(dish)")
         }
         
-        meals += [meal1, meal2, meal3]
+        meals += [beer, burger, dish]
     }
 }
