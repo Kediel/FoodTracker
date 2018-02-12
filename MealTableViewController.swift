@@ -117,7 +117,7 @@ class MealTableViewController: UITableViewController {
  
          If either the downcast fails or the meal property on sourceViewController is nil, the condition evaluates to false and the if statement doesn’t get executed.
          */
-        if let sourceViewController = sender.sourceViewController as? MealViewController, meal = sourceViewController.meal {
+        if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
             
             // Add a new meal.
             let newIndexPath = IndexPath(row: meals.count, section: 0)
