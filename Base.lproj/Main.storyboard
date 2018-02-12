@@ -47,7 +47,6 @@
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                                 <connections>
-                                    <outlet property="MealTableViewCell" destination="uFs-f5-LZs" id="UKf-ck-ZLt"/>
                                     <outlet property="nameLabel" destination="uFs-f5-LZs" id="8ai-wn-fgw"/>
                                     <outlet property="photoImageView" destination="PKy-QZ-pzI" id="B2g-f8-D9w"/>
                                     <outlet property="ratingControl" destination="HgC-CT-c4C" id="KVF-Z1-eD2"/>
