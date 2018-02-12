@@ -35,10 +35,10 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    //func textFieldDidEndEditing(_ textField: UITextField) {
         
         
-    }
+    //}
     
     // Mark: UIIMagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

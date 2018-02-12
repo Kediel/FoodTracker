@@ -43,6 +43,9 @@
                                         </stackView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <connections>
                                     <outlet property="MealTableViewCell" destination="uFs-f5-LZs" id="UKf-ck-ZLt"/>
                                     <outlet property="nameLabel" destination="uFs-f5-LZs" id="8ai-wn-fgw"/>
@@ -74,6 +77,7 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter meal name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="twT-90-kM6">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Enter meal name"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
