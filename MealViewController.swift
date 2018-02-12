@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -68,6 +69,29 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
+        
+    }
+    
+    // Mark: Navigation
+    // This method lets you configure a view controller before it's presented. (Segues are what let's you navigate throught the scenes)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        super.prepare(for:segue, sender: sender)
+        
+        // Configure the destination view controller only when the save button is pressed.
+        // Verifies that the sender is a button and uses the identity operator(===) to check that the objects referenced by the sender and saveButton outlet are the same.
+        guard let button = sender as? UIBarButtonItem, button === saveButton else {
+            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            return
+        }
+        
+        // The nil coalescing operator (??) is used to return the value of an optional if the optional has a value, or return a default value otherwise.
+        let name = nameTextField.text ?? ""
+        let photo = photoImageView.image
+        let rating = ratingControl.rating
+        
+        // Set the meal to be passed to MealTableViewController after the unwind segue.
+        meal = Meal(name: name, photo: photo, rating: rating)
         
     }
     
