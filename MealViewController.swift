@@ -97,7 +97,23 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     // Mark: Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         
-        dismiss(animated: true, completion: nil)
+        // Depending on style of presentation (modal/push), this view controller needs to be dismissed in two different ways.
+        // Creates a Boolean value that indicates whether the view conrtoller presented is of type UINavigationController.
+        let isPresentingInAddMealMode = presentingViewController is UINavigationController
+        // Checks to make sure the user was adding a new meal before calling the dimiss function.
+        if isPresentingInAddMealMode {
+            
+            dismiss(animated: true, completion: nil)
+        // Called if the user is editing an existing meal. Meaning the meal detail was pushed onto a navigation stack.
+        } else if let owningNavigationController = navigationController {
+            
+            owningNavigationController.popViewController(animated: true)
+        // Executes only if the meal detail scene was not preseneted inside a modal nav controller, and if the scene was not pushed onto a nav stack.
+        } else {
+            
+            fatalError("The MealViewController is not inside a navigation controller.")
+        }
+        
     }
     
     // This method lets you configure a view controller before it's presented. (Segues are what let's you navigate throught the scenes)

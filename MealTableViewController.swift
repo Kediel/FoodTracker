@@ -142,10 +142,12 @@ class MealTableViewController: UITableViewController {
          */
         if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
             
+            // Checks whether a row in the table view is selected.
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 
-                // Update an existing meal.
+                // Updates the meal array.
                 meals[selectedIndexPath.row] = meal
+                // Reloads the appropriate row in the table view.
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             } else {
             
