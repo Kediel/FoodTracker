@@ -29,6 +29,9 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         // Handle the text field's user input through delegate callbacks.
         nameTextField.delegate = self
+        
+        // Enable the Save button only if the text field has a valid Meal name.
+        updateSaveButtonState()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,10 +47,21 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         return true
     }
     
-    //func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        // Disable the Save button while editing.
+        saveButton.isEnabled = false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        // Checks if the text field is empty.
+        updateSaveButtonState()
+        // Sets the title of the scene to the text in the text field.
+        navigationItem.title = textField.text
         
         
-    //}
+    }
     
     // Mark: UIIMagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -73,6 +87,11 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     }
     
     // Mark: Navigation
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
     // This method lets you configure a view controller before it's presented. (Segues are what let's you navigate throught the scenes)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -112,5 +131,12 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         present(imagePickerController, animated: true, completion: nil)
     }
     
+    // Mark: Private Methods
+    private func updateSaveButtonState() {
+        
+        // Disable the save button if the text field is empty.
+        let text = nameTextField.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
+    }
 }
 
