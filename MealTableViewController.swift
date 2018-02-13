@@ -21,8 +21,15 @@ class MealTableViewController: UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
         
-        // Load the sample data.
-        loadSampleMeals()
+        // Load any saved meals, otherwise load sample data.
+        if let savedMeals = loadMeals() {
+            
+            meals += savedMeals
+        } else {
+            
+            // Load the sample data.
+            loadSampleMeals()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,6 +87,7 @@ class MealTableViewController: UITableViewController {
             // Delete the row from the data source
             // Removes the Meal object to be deleted from the meals array.
             meals.remove(at: indexPath.row)
+            saveMeals()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -163,6 +171,9 @@ class MealTableViewController: UITableViewController {
             // The .automatic animation option uses the best animation based on the table’s current state, and the insertion point’s location.
             tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
+            
+            // Save the meals.
+            saveMeals()
         }
     }
     
@@ -187,5 +198,25 @@ class MealTableViewController: UITableViewController {
         }
         
         meals += [beer, burger, dish]
+    }
+    
+    //This method attempts to archive the meals array to a specific location, and returns true if it’s successful. It uses the constant Meal.ArchiveURL that you defined in the Meal class to identify where to save the information.
+    private func saveMeals() {
+        
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
+        
+        if isSuccessfulSave {
+            
+            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            
+            os_log("Failed to save meals...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    // This method attempts to unarchive the object stored at the path Meal.ArchiveURL.path and downcast that object to an array of Meal objects. This code uses the as? operator so that it can return nil if the downcast fails. This failure typically happens because an array has not yet been saved. In this case, the unarchiveObject(withFile:) method returns nil. The attempt to downcast nil to [Meal] also fails, itself returning nil.
+    private func loadMeals() -> [Meal]? {
+        
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Meal.ArchiveURL.path) as? [Meal]
     }
 }
