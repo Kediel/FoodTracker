@@ -17,6 +17,11 @@ class Meal: NSObject, NSCoding {
     var photo: UIImage?
     var rating: Int
     
+    // Mark: Archiving Paths
+    
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("meals")
+    
     // Mark: Types
     
     struct PropertyKey {
@@ -73,9 +78,9 @@ class Meal: NSObject, NSCoding {
         }
         
         // Because photo is an optional property of Meal, just use conditional cast.
-        let photo = aDecoder.decodeObjectForKey(PropertyKey.photo) as? UIImage
+        let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
         
-        let rating = aDecoder.decodeIntegerForKey(PropertyKey.rating)
+        let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
         
         // Must call designated initializer.
         self.init(name: name, photo: photo, rating: rating)
